@@ -15,4 +15,4 @@ con.connect(function(err) {
 });
 }catch(e){ console.log('not connected');}
 
-module.export = con;
+module.exports = con;

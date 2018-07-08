@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-//const con = require('./libs/db');
-const mysql = require('mysql');
+const con = require('./libs/db');
+//const mysql = require('mysql');
 const bodyParser = require('body-parser');
 //const cors = require('cors');
 const orm = require('orm');
@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 //app.use(con);
 //app.use(cors);
 //app.use(pug);
-//connect to db
+/*//connect to db
 const con = mysql.createConnection({
 	host:'localhost',
 	user:'root',
@@ -30,7 +30,7 @@ con.connect(function(err) {
   console.log("Connected!");
 });
 }catch(e){ console.log('not connected');}
-
+*/
 //API
 //get all
 app.get('/person', function (req, res) {
