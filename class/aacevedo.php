@@ -2,7 +2,7 @@
 	
 	class Aacevedo
 	{
-		public function addData()
+		public function addData() : Array
 		{
 			$ch = curl_init(); 
 			$fields = array(
@@ -28,27 +28,19 @@
 			curl_close($ch);
 		}
 		
-		public function getAll()
+		public function getData($id = null) : Array
 		{
+			$url = ($id != null) ? "localhost:8081/person/".$id : "localhost:8081/person";
 			$ch = curl_init(); 
-			curl_setopt($ch, CURLOPT_URL, "localhost:8081/person"); 
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-			$output = curl_exec($ch); 
-			$result = json_decode($output);
-			curl_close($ch);  
-			return $result;
-		}
-		public function getData($id)
-		{
-			$ch = curl_init(); 
-			curl_setopt($ch, CURLOPT_URL, "localhost:8081/person/".$id); 
+			curl_setopt($ch, CURLOPT_URL, $url); 
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
 			$output = curl_exec($ch); 
 			$result = json_decode($output);
 			curl_close($ch);  
 			return $result;	
 		}
-		public function deleteData($id)
+
+		public function deleteData($id) : Array
 		{
 			$ch = curl_init(); 
 			curl_setopt($ch, CURLOPT_URL, "localhost:8081/person/".$id); 
@@ -69,7 +61,7 @@
 			$fields_string = '';
 			foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
 			rtrim($fields_string, '&');
-			//print_r($fields_string);
+			
 			//open connection
 			$ch = curl_init();
 
@@ -83,6 +75,8 @@
 
 			//close connection
 			curl_close($ch);
+
+			
 		}
 		
 	}
